@@ -1,10 +1,10 @@
 local itertools = require("infra.itertools")
-local jelly = require("infra.jellyfish")("textexchange", "debug")
+local jelly = require("infra.jellyfish")("textswap", "debug")
 local ni = require("infra.ni")
 local vsel = require("infra.vsel")
 local wincursor = require("infra.wincursor")
 
-local xmark_ns = ni.create_namespace("textexchange.extmarks")
+local xmark_ns = ni.create_namespace("textswap.extmarks")
 
 local xmarks = {}
 do
@@ -53,7 +53,7 @@ end
 
 ---@param src {bufnr:integer,xmid:integer}
 ---@param dest {bufnr:integer,xmid:integer}
-local function exchange(src, dest)
+local function swap(src, dest)
   if not ni.buf_is_valid(src.bufnr) then return jelly.warn("src bufnr is invalid") end
 
   local src_range = xmarks.range(src.bufnr, src.xmid)
@@ -75,7 +75,7 @@ local function exchange(src, dest)
 
   --stylua: ignore start
   jelly.info(
-    "exchanged src=#%d;%d:%d;%d:%d dest=#%d;%d:%d;%d:%d",
+    "swapped src=#%d;%d:%d;%d:%d dest=#%d;%d:%d;%d:%d",
     src.bufnr, src_range.start_line, src_range.start_col, src_range.stop_line, src_range.stop_col,
     dest.bufnr, dest_range.start_line, dest_range.start_col, dest_range.stop_line, dest_range.stop_col
   )
@@ -100,7 +100,7 @@ return function()
   else
     local xmid = xmarks.set(bufnr, range)
     local dest = { bufnr = bufnr, xmid = xmid }
-    exchange(state.src, dest)
+    swap(state.src, dest)
     state.src = nil
   end
 

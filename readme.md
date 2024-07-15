@@ -1,4 +1,4 @@
-to exchange text between two places handily
+to swap text between two places handily
 
 ## design choices, features, limits
 * work with utf-8 text
@@ -16,8 +16,8 @@ to exchange text between two places handily
 ## usage
 my personal config
 ```
-m.x("X", ":lua require'textexchange'()<cr>")
-cmds.create("Exchange", function() require("textexchange")() end, { nargs = 0, range = true })
+m.x("X", ":lua require'textswap'()<cr>")
+cmds.create("Swap", function() require("textswap")() end, { nargs = 0, range = true })
 ```
 
 ## credits
