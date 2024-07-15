@@ -1,6 +1,7 @@
 local itertools = require("infra.itertools")
 local jelly = require("infra.jellyfish")("textswap", "debug")
 local ni = require("infra.ni")
+local unsafe = require("infra.unsafe")
 local vsel = require("infra.vsel")
 local wincursor = require("infra.wincursor")
 
@@ -92,6 +93,8 @@ return function()
   local bufnr = ni.win_get_buf(winid)
   local range = vsel.range(bufnr, true)
   if range == nil then return jelly.info("no selecting range") end
+  --since buf_set_xmark.end_col does not accept -1 or max_col
+  if range.stop_col == -1 then range.stop_col = assert(unsafe.linelen(bufnr, range.stop_line - 1)) end
 
   if state.src == nil then
     local xmid = xmarks.set(bufnr, range, "Search")
