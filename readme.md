@@ -21,7 +21,16 @@ https://github.com/user-attachments/assets/03343fe4-3649-4848-b1c6-388818ff32ec
 my personal config
 ```
 m.x("X", ":lua require'textswap'()<cr>")
-cmds.create("Swap", function() require("textswap")() end, { nargs = 0, range = true })
+
+do --:Swap
+  local spell = cmds.Spell("Swap", function(args, ctx)
+    local textswap = require("textswap")
+    if ctx.range ~= 0 then return textswap() end
+    textswap.cancel()
+  end)
+  spell:enable("range")
+  cmds.cast(spell)
+end
 ```
 
 ## credits
