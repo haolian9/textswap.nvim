@@ -5,6 +5,10 @@ to exchange text between two places handily
 * work in visual mode `v` and `V`, but not `ctrl-V`
 * work across buffers
 
+## status
+* just works
+* feature complete to me
+
 ## prerequisites
 * nvim 0.10.*
 * haolian9/infra.nvim
@@ -17,4 +21,4 @@ cmds.create("Exchange", function() require("textexchange")() end, { nargs = 0, r
 ```
 
 ## credits
-* awesome [vim-exchange](https://github.com/tommcdo/vim-exchange) which i had been using til nvim 0.7
+* the awesome [vim-exchange](https://github.com/tommcdo/vim-exchange) which i had been using til nvim 0.7
