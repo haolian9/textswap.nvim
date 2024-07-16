@@ -1,7 +1,7 @@
 to swap text between two places handily
 
 https://github.com/user-attachments/assets/03343fe4-3649-4848-b1c6-388818ff32ec
-
+(惭愧，视频中的"髮"是错别字)
 
 ## design choices, features, limits
 * work with utf-8 text
