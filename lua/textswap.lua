@@ -1,5 +1,4 @@
 local M = {}
-M.__index = M
 
 local itertools = require("infra.itertools")
 local jelly = require("infra.jellyfish")("textswap", "debug")
@@ -94,7 +93,7 @@ local state = {
   src = nil, ---@type nil|{bufnr:integer, xmid:integer}
 }
 
-function M.__call()
+function M.swap()
   local winid = ni.get_current_win()
   local cursor = wincursor.last_position(winid)
   local bufnr = ni.win_get_buf(winid)
@@ -125,4 +124,4 @@ function M.cancel()
   xmarks.del(src.bufnr, src.xmid)
 end
 
-return setmetatable({}, M)
+return M
